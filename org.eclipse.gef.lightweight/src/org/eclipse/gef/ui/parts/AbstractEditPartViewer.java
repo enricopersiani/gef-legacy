@@ -187,7 +187,10 @@ public abstract class AbstractEditPartViewer implements EditPartViewer {
 	 * @see EditPartViewer#appendSelection(EditPart)
 	 */
 	public void appendSelection(EditPart editpart) {
-		selectionModel.appendSelection(editpart);
+		appendSelection(editpart, true);
+	}
+	public void appendSelection(EditPart editpart, boolean propagate) {
+		selectionModel.appendSelection(editpart, propagate);
 	}
 
 	/**
@@ -199,14 +202,20 @@ public abstract class AbstractEditPartViewer implements EditPartViewer {
 	 * @see EditPartViewer#deselect(EditPart)
 	 */
 	public void deselect(EditPart editpart) {
-		selectionModel.deselect(editpart);
+		deselect(editpart, true);
+	}
+	public void deselect(EditPart editpart, boolean propagate) {
+		selectionModel.deselect(editpart, propagate);
 	}
 
 	/**
 	 * @see EditPartViewer#deselectAll()
 	 */
 	public void deselectAll() {
-		selectionModel.deselectAll();
+		deselectAll(true);
+	}
+	public void deselectAll(boolean propagate) {
+		selectionModel.deselectAll(propagate);
 	}
 
 	/**
@@ -591,12 +600,15 @@ public abstract class AbstractEditPartViewer implements EditPartViewer {
 	 * @see EditPartViewer#select(EditPart)
 	 */
 	public void select(EditPart editpart) {
+		select(editpart, true);
+	}
+	public void select(EditPart editpart, boolean propagate) {
 		// If selection isn't changing, do nothing.
 		if ((getSelectedEditParts().size() == 1)
 				&& (getSelectedEditParts().get(0) == editpart))
 			return;
 		primDeselectAll();
-		appendSelection(editpart); // fireSelectionChanged() is called here
+		appendSelection(editpart, propagate); // fireSelectionChanged() is called here
 	}
 
 	/**
@@ -748,7 +760,11 @@ public abstract class AbstractEditPartViewer implements EditPartViewer {
 	 * @see ISelectionProvider#setSelection(ISelection)
 	 */
 	public void setSelection(ISelection newSelection) {
-		selectionModel.setSelection(newSelection);
+		setSelection(newSelection, true);
+	}
+
+	public void setSelection(ISelection newSelection, boolean propagate) {
+		selectionModel.setSelection(newSelection, propagate);
 	}
 
 	/**

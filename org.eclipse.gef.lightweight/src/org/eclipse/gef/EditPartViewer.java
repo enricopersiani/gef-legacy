@@ -154,6 +154,7 @@ public interface EditPartViewer extends
 	 *            the EditPart to append
 	 */
 	void appendSelection(EditPart editpart);
+	void appendSelection(EditPart editpart, boolean propagate);
 
 	/**
 	 * Optionally creates the default {@link org.eclipse.swt.widgets.Control
@@ -402,6 +403,7 @@ public interface EditPartViewer extends
 	 */
 	ISelection getSelection();
 
+	void setSelection(ISelection newSelection, boolean propagate);
 	/**
 	 * Returns the viewer's selection manager. The selection manager has
 	 * complete control over the viewer's representation of selection. It
@@ -501,6 +503,7 @@ public interface EditPartViewer extends
 	 *            the new selection
 	 */
 	void select(EditPart editpart);
+	void select(EditPart editpart, boolean propagate);
 
 	/**
 	 * Sets the contents for this Viewer. The contents can also be set using

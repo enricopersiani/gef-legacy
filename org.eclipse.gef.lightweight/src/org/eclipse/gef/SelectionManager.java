@@ -70,7 +70,7 @@ public class SelectionManager {
 	 *            the EditPart to append
 	 * @since 3.2
 	 */
-	public void appendSelection(EditPart editpart) {
+	public void appendSelection(EditPart editpart, boolean propagate) {
 		if (editpart != getFocus()) {
 			// Fix for 458416: adjust the focus through the viewer only (to give
 			// AbstractEditPartViewer a change to update its focusPart field).
@@ -88,7 +88,8 @@ public class SelectionManager {
 		selection.add(editpart);
 		editpart.setSelected(EditPart.SELECTED_PRIMARY);
 
-		fireSelectionChanged();
+		if (propagate)
+			fireSelectionChanged();
 	}
 
 	/**
@@ -98,7 +99,7 @@ public class SelectionManager {
 	 *            the editpart
 	 * @since 3.2
 	 */
-	public void deselect(EditPart editpart) {
+	public void deselect(EditPart editpart, boolean propagate) {
 		editpart.setSelected(EditPart.SELECTED_NONE);
 
 		selection.remove(editpart);
@@ -123,7 +124,8 @@ public class SelectionManager {
 				}
 			}
 		}
-		fireSelectionChanged();
+		if (propagate)
+			fireSelectionChanged();
 	}
 
 	/**
@@ -131,7 +133,7 @@ public class SelectionManager {
 	 * 
 	 * @since 3.2
 	 */
-	public void deselectAll() {
+	public void deselectAll(boolean propagate) {
 		EditPart part;
 		// Fix for 458416: adjust the focus through the viewer only (to give
 		// AbstractEditPartViewer a change to update its focusPart field).
@@ -143,7 +145,8 @@ public class SelectionManager {
 			part.setSelected(EditPart.SELECTED_NONE);
 		}
 		selection.clear();
-		fireSelectionChanged();
+		if (propagate)
+			fireSelectionChanged();
 	}
 
 	/**
@@ -279,7 +282,7 @@ public class SelectionManager {
 	 *            the new selection
 	 * @since 3.2
 	 */
-	public void setSelection(ISelection newSelection) {
+	public void setSelection(ISelection newSelection, boolean propagate) {
 		if (!(newSelection instanceof IStructuredSelection))
 			return;
 
@@ -311,7 +314,8 @@ public class SelectionManager {
 				part.setSelected(EditPart.SELECTED);
 			}
 		}
-		fireSelectionChanged();
+		if (propagate)
+			fireSelectionChanged();
 	}
 
 }
