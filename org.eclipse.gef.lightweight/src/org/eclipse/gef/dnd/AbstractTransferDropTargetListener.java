@@ -389,6 +389,9 @@ public abstract class AbstractTransferDropTargetListener implements
 	 *         for the given DropTargetEvent
 	 */
 	public boolean isEnabled(DropTargetEvent event) {
+		if (viewer.getEditDomain().isDisabled())
+			return false;
+
 		for (int i = 0; i < event.dataTypes.length; i++) {
 			if (getTransfer().isSupportedType(event.dataTypes[i])) {
 				setCurrentEvent(event);

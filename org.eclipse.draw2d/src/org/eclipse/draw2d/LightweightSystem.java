@@ -59,6 +59,7 @@ public class LightweightSystem {
 	private EventDispatcher dispatcher;
 	private UpdateManager manager = new DeferredUpdateManager();
 	private int ignoreResize;
+	protected boolean disabled;
 
 	/**
 	 * Constructs a LightweightSystem on Canvas <i>c</i>.
@@ -77,6 +78,16 @@ public class LightweightSystem {
 	 */
 	public LightweightSystem() {
 		init();
+	}
+
+	public boolean setDisabled(boolean disabled) {
+		boolean wasDisabled = this.disabled;
+		this.disabled = disabled;
+		return wasDisabled;
+	}
+
+	public boolean isDisabled() {
+		return disabled;
 	}
 
 	/**
@@ -200,7 +211,19 @@ public class LightweightSystem {
 	 * @since 2.0
 	 */
 	public void paint(GC gc) {
+		if (isDisabled())
+			paintDisabled(gc);
+		else
+			getUpdateManager().paint(gc);
+	}
+
+	protected void paintDisabled(GC gc) {
 		getUpdateManager().paint(gc);
+		gc.setAdvanced(true);
+		gc.setAlpha(50);
+		gc.setClipping((org.eclipse.swt.graphics.Rectangle) null);
+		gc.setBackground(ColorConstants.black);
+		gc.fillRectangle(canvas.getBounds());
 	}
 
 	/**

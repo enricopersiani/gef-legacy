@@ -239,6 +239,11 @@ public class TreeViewer extends AbstractEditPartViewer {
 		tree.setSelection(treeItems);
 	}
 
+	public void setEditDomain(LightweightEditDomain editdomain) {
+		super.setEditDomain(editdomain);
+		getControl().setEnabled(editdomain == null || !editdomain.isDisabled());
+	}
+
 	/**
 	 * Unhooks a control so that it can be reset. This method deactivates the
 	 * contents, removes the Control as being the Control of the

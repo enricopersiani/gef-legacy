@@ -397,6 +397,8 @@ public class GraphicalViewerImpl extends AbstractEditPartViewer implements
 		// the old event dispatcher.
 		getLightweightSystem().setEventDispatcher(
 				eventDispatcher = new DomainEventDispatcher(domain, this));
+		getLightweightSystem().setDisabled(domain != null && domain.isDisabled());
+		getControl().redraw();
 	}
 
 	/**

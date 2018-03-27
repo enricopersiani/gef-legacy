@@ -10,10 +10,14 @@
  *******************************************************************************/
 package org.eclipse.gef;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.gef.commands.CommandStack;
+import org.eclipse.gef.tools.AbstractTool;
 import org.eclipse.gef.tools.SelectionTool;
 import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.events.FocusEvent;
@@ -27,16 +31,56 @@ import org.eclipse.swt.widgets.Event;
  * CommandStack, one or more EditPartViewers, and the active Tool.
  */
 public class LightweightEditDomain {
+	public static final String PROPERTY_DISABLED = "disabled";
 
 	private Tool defaultTool;
 	private Tool activeTool;
+	protected Tool disabledTool;
 	private List viewers = new ArrayList();
 	private CommandStack commandStack = new CommandStack();
+	protected boolean disabled;
+	protected PropertyChangeSupport changeSupport;
 
 	/**
 	 * Constructs an LightweightEditDomain and loads the default tool.
 	 */
 	public LightweightEditDomain() {
+		this.disabledTool = new DisabledTool();
+		this.changeSupport = new PropertyChangeSupport(this);
+	}
+
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.addPropertyChangeListener(listener);
+	}
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.removePropertyChangeListener(listener);
+	}
+
+	public void setDisabled(boolean disabled) {
+		if (this.disabled == disabled)
+			return;
+
+		this.disabled = disabled;
+		refreshViewers();
+
+		changeSupport.firePropertyChange(PROPERTY_DISABLED, !isDisabled(), isDisabled());
+	}
+
+	public boolean isDisabled() {
+		return disabled;
+	}
+
+	public List getViewers() {
+		return viewers;
+	}
+
+	protected void refreshViewers() {
+		Iterator iterator = new ArrayList(getViewers()).iterator();
+		while (iterator.hasNext()) {
+			EditPartViewer viewer = (EditPartViewer) iterator.next();
+			viewer.setEditDomain(null);
+			viewer.setEditDomain(this);
+		}
 	}
 
 	/**
@@ -87,7 +131,7 @@ public class LightweightEditDomain {
 	 * @return the active Tool
 	 */
 	public Tool getActiveTool() {
-		return activeTool;
+		return isDisabled() ? disabledTool : activeTool;
 	}
 
 	/**
@@ -121,7 +165,7 @@ public class LightweightEditDomain {
 	public Tool getDefaultTool() {
 		if (defaultTool == null)
 			defaultTool = new SelectionTool();
-		return defaultTool;
+		return isDisabled() ? disabledTool : defaultTool;
 	}
 
 	/**
@@ -374,4 +418,16 @@ public class LightweightEditDomain {
 			tool.viewerExited(mouseEvent, viewer);
 	}
 
+	public class DisabledTool extends AbstractTool {
+		public DisabledTool() {
+			setDefaultCursor(SharedCursors.WAIT);
+			setUnloadWhenFinished(false);
+		}
+		protected boolean isViewerImportant(EditPartViewer viewer) {
+			return false;
+		}
+		protected String getCommandName() {
+			return null;
+		}
+	}
 }
