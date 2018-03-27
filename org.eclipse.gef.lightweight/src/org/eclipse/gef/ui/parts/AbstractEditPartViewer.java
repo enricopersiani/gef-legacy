@@ -43,8 +43,8 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 
 import org.eclipse.draw2d.geometry.Point;
 
+import org.eclipse.gef.LightweightEditDomain;
 import org.eclipse.gef.AccessibleEditPart;
-import org.eclipse.gef.EditDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.EditPartViewer;
@@ -97,7 +97,7 @@ public abstract class AbstractEditPartViewer implements EditPartViewer {
 	private Map properties;
 	private Control control;
 	private ResourceManager resources;
-	private EditDomain domain;
+	private LightweightEditDomain domain;
 	private RootEditPart rootEditPart;
 	private MenuManager contextMenu;
 
@@ -321,7 +321,7 @@ public abstract class AbstractEditPartViewer implements EditPartViewer {
 	/**
 	 * @see EditPartViewer#getEditDomain()
 	 */
-	public EditDomain getEditDomain() {
+	public LightweightEditDomain getEditDomain() {
 		return domain;
 	}
 
@@ -677,7 +677,7 @@ public abstract class AbstractEditPartViewer implements EditPartViewer {
 	/**
 	 * @see EditPartViewer#setEditDomain(EditDomain)
 	 */
-	public void setEditDomain(EditDomain editdomain) {
+	public void setEditDomain(LightweightEditDomain editdomain) {
 		this.domain = editdomain;
 	}
 

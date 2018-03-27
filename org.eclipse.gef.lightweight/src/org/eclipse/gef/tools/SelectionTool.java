@@ -24,7 +24,6 @@ import org.eclipse.draw2d.geometry.Point;
 
 import org.eclipse.gef.AccessibleHandleProvider;
 import org.eclipse.gef.DragTracker;
-import org.eclipse.gef.EditDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.GraphicalViewer;

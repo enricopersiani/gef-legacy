@@ -9,6 +9,9 @@
    <feature url="features/org.eclipse.draw2d.source_3.10.200.qualifier.jar" id="org.eclipse.draw2d.source" version="3.10.200.qualifier">
       <category name="GEF"/>
    </feature>
+   <feature url="features/org.eclipse.gef.lightweight_3.11.100.qualifier.jar" id="org.eclipse.gef.lightweight" version="3.11.100.qualifier">
+      <category name="GEF"/>
+   </feature>
    <feature url="features/org.eclipse.gef_3.11.100.qualifier.jar" id="org.eclipse.gef" version="3.11.100.qualifier">
       <category name="GEF"/>
    </feature>

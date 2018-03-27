@@ -482,6 +482,8 @@
 		<module>../org.eclipse.draw2d.doc.isv</module>
 		<module>../org.eclipse.draw2d-feature</module>
 		<module>../org.eclipse.draw2d.sdk-feature</module>
+		<module>../org.eclipse.gef.lightweight</module>
+		<module>../org.eclipse.gef.lightweight-feature</module>
 		<module>../org.eclipse.gef</module>
 		<module>../org.eclipse.gef.tests</module>
 		<module>../org.eclipse.gef.doc.isv</module>

@@ -275,7 +275,7 @@ public interface EditPartViewer extends
 	 * 
 	 * @return the viewer's EditDomain
 	 */
-	EditDomain getEditDomain();
+	LightweightEditDomain getEditDomain();
 
 	/**
 	 * Returns the <code>EditPartFactory</code> for this viewer. The
@@ -560,7 +560,7 @@ public interface EditPartViewer extends
 	 * @param domain
 	 *            The EditDomain
 	 */
-	void setEditDomain(EditDomain domain);
+	void setEditDomain(LightweightEditDomain domain);
 
 	/**
 	 * Sets the EditPartFactory.

@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.gef.LightweightEditDomain;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.events.FocusEvent;
@@ -42,7 +43,6 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 
 import org.eclipse.gef.DragTracker;
-import org.eclipse.gef.EditDomain;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gef.MouseWheelHandler;
@@ -202,7 +202,7 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 	private Input current;
 	private EditPartViewer currentViewer;
 	private Cursor defaultCursor, disabledCursor;
-	private EditDomain domain;
+	private LightweightEditDomain domain;
 	private List operationSet;
 	private int startX, startY, state;
 
@@ -585,7 +585,7 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 	 * 
 	 * @return the editdomain
 	 */
-	protected EditDomain getDomain() {
+	protected LightweightEditDomain getDomain() {
 		return domain;
 	}
 
@@ -1430,7 +1430,7 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 	 *            the edit domain
 	 * @see #getDomain()
 	 */
-	public void setEditDomain(EditDomain domain) {
+	public void setEditDomain(LightweightEditDomain domain) {
 		this.domain = domain;
 	}
 
