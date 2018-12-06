@@ -16,3 +16,4 @@ Export-Package: org.eclipse.gef.examples.digraph1.editor,
  org.eclipse.gef.examples.digraph1.figure,
  org.eclipse.gef.examples.digraph1.model,
  org.eclipse.gef.examples.digraph1.policy
+Automatic-Module-Name: org.eclipse.gef.examples.digraph1

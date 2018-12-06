@@ -31,4 +31,4 @@ Require-Bundle: org.eclipse.osgi;bundle-version="3.6.0";resolution:=optional,
  org.eclipse.jface;bundle-version="[3.2.0,4.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.4
-
+Automatic-Module-Name: org.eclipse.gef.lightweight

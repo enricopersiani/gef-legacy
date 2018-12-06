@@ -16,4 +16,4 @@ Require-Bundle: org.eclipse.ui,
  org.junit
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.4
-
+Automatic-Module-Name: org.eclipse.zest.tests
