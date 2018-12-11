@@ -11,7 +11,7 @@
 	<!-- this is the parent POM from which all modules inherit common settings -->
 	<properties>
 		<maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
-		<tycho.version>1.3.0-SNAPSHOT</tycho.version>
+		<tycho.version>1.3.0</tycho.version>
 		<cbi-plugins.version>1.0.4</cbi-plugins.version>
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
 		<tycho.scmUrl>scm:git:https://github.com/eclipse/gef-legacy.git</tycho.scmUrl>
@@ -247,8 +247,8 @@
 			<url>https://repo.eclipse.org/content/repositories/cbi-releases/</url>
 		</pluginRepository>
 		<pluginRepository>
-			<id>tycho-snapshots</id>
-			<url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</url>
+			<id>tycho-1.3-staged</id>
+			<url>https://oss.sonatype.org/content/repositories/orgeclipsetycho-1050/</url>
 		</pluginRepository>
 	</pluginRepositories>
 
